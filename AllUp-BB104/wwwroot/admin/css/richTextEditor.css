@@ -1,0 +1,136 @@
+﻿/* Genel kapsayıcı */
+.rte-wrapper {
+    max-width: 700px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+    box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Toolbar stili */
+.rte-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+    /* Butonlar */
+    .rte-toolbar button[type="button"] {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 6px 12px;
+        font-size: 18px;
+        border-radius: 6px;
+        color: #444;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .rte-toolbar button[type="button"]:hover,
+        .rte-toolbar button[type="button"]:focus {
+            background-color: #e3e3e3;
+            color: #111;
+            outline: none;
+        }
+
+    .rte-toolbar button.removeBgBtn {
+        color: #d9534f;
+        font-weight: 600;
+    }
+
+        .rte-toolbar button.removeBgBtn:hover,
+        .rte-toolbar button.removeBgBtn:focus {
+            background-color: #f8d7da;
+            color: #a71d2a;
+        }
+
+    /* B, I, U ikonlarının tıklanmasını engelle */
+    .rte-toolbar button b,
+    .rte-toolbar button i,
+    .rte-toolbar button u {
+        pointer-events: none;
+        font-weight: 700;
+    }
+
+    /* Select kutuları */
+    .rte-toolbar select.font-size-selector,
+    .rte-toolbar select.font-family-selector {
+        padding: 6px 12px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        font-size: 14px;
+        color: #444;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+        min-width: 120px;
+    }
+
+        .rte-toolbar select.font-size-selector:hover,
+        .rte-toolbar select.font-family-selector:hover,
+        .rte-toolbar select.font-size-selector:focus,
+        .rte-toolbar select.font-family-selector:focus {
+            border-color: #888;
+            outline: none;
+        }
+
+    /* Renk seçiciler */
+    .rte-toolbar input.color-picker {
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 0 0 3px rgba(0,0,0,0.15);
+        transition: box-shadow 0.2s ease;
+    }
+
+        .rte-toolbar input.color-picker:hover,
+        .rte-toolbar input.color-picker:focus {
+            box-shadow: 0 0 6px #555;
+            outline: none;
+        }
+
+/* Editör alanı */
+.rte-editor {
+    min-height: 200px;
+    padding: 15px 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    overflow-y: auto;
+    outline: none;
+    color: #222;
+    background-color: #fff;
+    user-select: text;
+    border-top: 1px solid #ddd;
+}
+
+    /* Placeholder benzeri gösterim (optional, eğer editör boşsa) */
+    .rte-editor:empty::before {
+        content: attr(data-placeholder);
+        color: #aaa;
+        pointer-events: none;
+        user-select: none;
+    }
+
+/* Textarea gizli, ihtiyacın varsa JS ile senkronize edebilirsin */
+.rich-editor {
+    display: none !important;
+}

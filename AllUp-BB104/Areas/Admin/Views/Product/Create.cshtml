@@ -1,0 +1,100 @@
+﻿@model ProductCreateVM
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <p class="card-description">
+                Product yarat
+            </p>
+            <form method="post" class="forms-sample" enctype="multipart/form-data">
+
+                <div class="text-danger" asp-validation-summary="All"></div>
+
+
+
+                <div class="form-group">
+                    <label for="exampleInputUsername1" asp-for="Name"> </label>
+                    <input class="form-control" asp-for="Name" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="exampleInputUsername1" asp-for="Description"> </label>
+                    <input class="form-control" asp-for="Description" placeholder="Desc">
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleInputUsername1" asp-for="Price"> </label>
+                    <input class="form-control" asp-for="Price" placeholder="Price">
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="exampleInputUsername1" asp-for="CategoryId"> </label>
+                    <select asp-for="CategoryId">
+                        <option value="@null" selected disabled> Choose Category</option>
+                        @foreach (CategoryGetVM category in ViewBag.Categories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="exampleInputUsername1" asp-for="BrandId"> </label>
+                    <select asp-for="BrandId">
+                        <option value="@null" selected disabled> Choose Brand</option>
+                        @foreach (BrandGetVM brand in ViewBag.Brands)
+                        {
+                            <option value="@brand.Id">@brand.Name</option>
+                        }
+
+                    </select>
+                    <span asp-validation-for="BrandId" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="exampleInputUsername1" asp-for="TagIds"> </label>
+                    <select asp-for="TagIds">
+                        @foreach (TagGetVM tag in ViewBag.Tags)
+                        {
+                            <option value="@tag.Id">@tag.Name</option>
+                        }
+
+                    </select>
+                    <span asp-validation-for="TagIds" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleInputUsername1" asp-for="MainImage"> </label>
+                    <input class="form-control" asp-for="MainImage" placeholder="Name">
+                    <span asp-validation-for="MainImage" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputUsername1" asp-for="ProductImageFiles"> </label>
+                    <input class="form-control" asp-for="ProductImageFiles" placeholder="Name">
+                    <span asp-validation-for="ProductImageFiles" class="text-danger"></span>
+                </div>
+
+
+
+
+                <button type="submit" class="btn btn-primary mr-2">Yarat</button>
+                <a class="btn btn-light" asp-action="Index">Ləğv et</a>
+            </form>
+        </div>
+    </div>
+</div>
