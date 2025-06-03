@@ -19,5 +19,7 @@ public class AllUpProfile : Profile
         CreateMap<Category, CategoryGetVM>().ReverseMap();
         CreateMap<Brand, BrandGetVM>().ReverseMap();
         CreateMap<Tag, TagGetVM>().ReverseMap();
+
+        CreateMap<BasketItem, BasketItemGetVM>().ReverseMap();
     }
 }

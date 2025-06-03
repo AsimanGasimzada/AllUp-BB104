@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using AllUp_BB104.Services
+@inject LayoutService LayoutService 
+@{
+    var settings = await LayoutService.GetSettingsAsync();
+}
+<!DOCTYPE html>
 <html class="no-js" lang="en">
 <!-- Mirrored from demo.hasthemes.com/allup/allup/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 04 Sep 2020 10:46:32 GMT -->
 <head>
@@ -39,16 +44,7 @@
 </head>
 
 <body>
-    <!--====== PRELOADER PART START ======-->
 
-    <div id="preloader">
-        <div class="preloader">
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-
-    <!--====== PRELOADER PART ENDS ======-->
     <!--====== Header Part Start ======-->
 
     <header class="header-area">
@@ -64,9 +60,16 @@
                         </div>
                         <div class="header-menu-nav">
                             <ul class="menu-nav">
-                                <li>
-                                    <a href="compare.html"><i class="fal fa-repeat"></i> Compare (0)</a>
-                                </li>
+
+
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li>
+                                        <a asp-action="Logout" asp-controller="Auth"><i class="fal fa-repeat"></i> @User.Identity.Name</a>
+                                    </li>
+
+                                }
                                 <li>
                                     <a href="wishlist.html"><i class="fal fa-heart"></i> Wishlist(0)</a>
                                 </li>
@@ -315,86 +318,10 @@
                                         <button><i class="icon ion-android-search"></i></button>
                                     </form>
                                 </div>
-                                <div class="header-cart">
-                                    <div class="cart-btn">
-                                        <a href="#">
-                                            <i class="icon ion-bag"></i>
-                                            <span class="text">Cart :</span>
-                                            <span class="total">$0.00</span>
-                                            <span class="count">0</span>
-                                        </a>
-                                    </div>
-                                    <div class="mini-cart">
-                                        <ul class="cart-items">
-                                            <li>
-                                                <div class="single-cart-item d-flex">
-                                                    <div class="cart-item-thumb">
-                                                        <a href="single-product.html">
-                                                            <img src="~/assets/images/product-cart/cart-1.jpg"
-                                                                 alt="product" />
-                                                        </a>
-                                                        <span class="product-quantity">1x</span>
-                                                    </div>
-                                                    <div class="cart-item-content media-body">
-                                                        <h5 class="product-name">
-                                                            <a href="single-product.html">New Balance Fresh Foam LAZR</a>
-                                                        </h5>
-                                                        <span class="product-price">€18.90</span>
-                                                        <span class="product-color"><strong>Color:</strong> White</span>
-                                                        <a href="#" class="product-close">
-                                                            <i class="fal fa-times"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="single-cart-item d-flex">
-                                                    <div class="cart-item-thumb">
-                                                        <a href="single-product.html">
-                                                            <img src="~/assets/images/product-cart/cart-2.jpg"
-                                                                 alt="product" />
-                                                        </a>
-                                                        <span class="product-quantity">3x</span>
-                                                    </div>
-                                                    <div class="cart-item-content media-body">
-                                                        <h5 class="product-name">
-                                                            <a href="single-product.html">New Balance Fresh Foam LAZR</a>
-                                                        </h5>
-                                                        <span class="product-price">€18.90</span>
-                                                        <span class="product-color"><strong>Color:</strong> White</span>
-                                                        <a href="#" class="product-close">
-                                                            <i class="fal fa-times"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="price_content">
-                                            <div class="cart-subtotals">
-                                                <div class="products price_inline">
-                                                    <span class="label">Subtotal</span>
-                                                    <span class="value">€30.80</span>
-                                                </div>
-                                                <div class="shipping price_inline">
-                                                    <span class="label">Shipping</span>
-                                                    <span class="value">€7.00</span>
-                                                </div>
-                                                <div class="tax price_inline">
-                                                    <span class="label">Taxes</span>
-                                                    <span class="value">€0.00</span>
-                                                </div>
-                                            </div>
-                                            <div class="cart-total price_inline">
-                                                <span class="label">Total</span>
-                                                <span class="value">€37.80</span>
-                                            </div>
-                                        </div>
-                                        <!-- price content -->
-                                        <div class="checkout text-center">
-                                            <a href="checkout.html" class="main-btn">Checkout</a>
-                                        </div>
-                                    </div>
-                                    <!-- mini cart -->
+
+                                <div class="basketModalArea">
+                                    <partial name="_basketModalPartial"></partial>
+
                                 </div>
                             </div>
                             <!-- header search cart -->
@@ -1397,12 +1324,12 @@
     </header>
 
     <!--====== Header Part Ends ======-->
-        @RenderBody()
+    @RenderBody()
 
     <!--====== Footer Part Start ======-->
 
     <section class="footer-area bg_cover"
-             style="background-image: url(assets/images/bg-footer.jpg)">
+             style="background-image: url(/assets/images/bg-footer.jpg)">
         <div class="footer-widget pt-30 pb-70">
             <div class="container">
                 <div class="row">
@@ -1412,15 +1339,15 @@
 
                             <ul>
                                 <li>
-                                    <i class="fas fa-map-marker-alt"></i> 45 Grand Central
-                                    Terminal New York,NY 1017 United State USA
+                                    <i class="fas fa-map-marker-alt"></i> 
+                                   @settings["Location"]
                                 </li>
                                 <li>
                                     <i class="fas fa-phone"></i>
-                                    <a href="tell:123-456-789">+123 456 789</a>
+                                    <a href="tell:@settings["PhoneNumber"]">@settings["PhoneNumber"]</a>
                                 </li>
                                 <li>
-                                    <i class="fas fa-envelope"></i><a href="mailto://email@yourwebsitename.com">email@yourwebsitename.com</a>
+                                    <i class="fas fa-envelope"></i><a href="mailto:@(settings["Email"])">@settings["Email"]</a>
                                 </li>
                                 <li>
                                     <i class="far fa-clock"></i> Mon-Sat 9:00pm - 5:00pm
@@ -1716,10 +1643,18 @@
     <script src="~/assets/js/plugins/jquery.countdown.min.js"></script>
     <script src="~/assets/js/plugins/jquery-ui.min.js"></script>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
     <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
     <!-- <script src="~/assets/js/plugins.min.js"></script> -->
     <!--====== Main Activation js ======-->
     <script src="~/assets/js/main.js"></script>
+
+
+    @await RenderSectionAsync("Scripts", required: false))
 </body>
 
 <!-- Mirrored from demo.hasthemes.com/allup/allup/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 04 Sep 2020 10:47:16 GMT -->

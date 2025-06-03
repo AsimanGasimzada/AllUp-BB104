@@ -1,9 +1,10 @@
 ﻿using AllUp_BB104.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AllUp_BB104.Contexts;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<AppUser>
 {
     public AppDbContext(DbContextOptions options) : base(options)
     {
@@ -22,4 +23,6 @@ public class AppDbContext : DbContext
     public required DbSet<Tag> Tags { get; set; }
     public required DbSet<Category> Categories { get; set; }
     public required DbSet<Brand> Brands { get; set; }
+    public required DbSet<BasketItem> BasketItems { get; set; }
+    public required DbSet<Setting> Settings{ get; set; }
 }

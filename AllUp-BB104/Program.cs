@@ -1,4 +1,6 @@
+using AllUp_BB104.Contexts;
 using AllUp_BB104.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace AllUp_BB104
@@ -13,6 +15,28 @@ namespace AllUp_BB104
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<CloudinaryService>();
+            builder.Services.AddScoped<LayoutService>();
+
+            builder.Services.AddHttpContextAccessor();
+
+            builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+
+                options.User.RequireUniqueEmail = true;
+
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 6;
+
+                options.SignIn.RequireConfirmedEmail = false;
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+                options.Lockout.AllowedForNewUsers = true;
+
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
 
             builder.Services.AddAutoMapper(typeof(Program));
 
@@ -34,6 +58,7 @@ namespace AllUp_BB104
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
