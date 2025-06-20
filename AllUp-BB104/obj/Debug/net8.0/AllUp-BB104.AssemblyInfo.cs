@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AllUp-BB104")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de71434cba70809baa176ddd745ff46afd6b18ca")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03d37eff992c85bf3042c1f094d12a1a11a1a791")]
 [assembly: System.Reflection.AssemblyProductAttribute("AllUp-BB104")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AllUp-BB104")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

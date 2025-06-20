@@ -1,4 +1,6 @@
 using AllUp_BB104.Contexts;
+using AllUp_BB104.Interceptors;
+using AllUp_BB104.Models.Common;
 using AllUp_BB104.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +18,7 @@ namespace AllUp_BB104
 
             builder.Services.AddScoped<CloudinaryService>();
             builder.Services.AddScoped<LayoutService>();
+            builder.Services.AddScoped<BaseAuditableInterceptor>();
 
             builder.Services.AddHttpContextAccessor();
 

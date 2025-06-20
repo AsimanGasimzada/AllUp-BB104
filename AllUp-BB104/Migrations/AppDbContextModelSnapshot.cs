@@ -152,6 +152,46 @@ namespace AllUp_BB104.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("AllUp_BB104.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(5);
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Comments", t =>
+                        {
+                            t.HasCheckConstraint("CK_Comments_Rating_Constraint", " Rating BETWEEN 0 AND 5");
+                        });
+                });
+
             modelBuilder.Entity("AllUp_BB104.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -166,10 +206,19 @@ namespace AllUp_BB104.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -180,6 +229,17 @@ namespace AllUp_BB104.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("Rating")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(5);
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
@@ -189,6 +249,8 @@ namespace AllUp_BB104.Migrations
                     b.ToTable("Products", t =>
                         {
                             t.HasCheckConstraint("CK_Products_Price_Constraint", " Price > 0");
+
+                            t.HasCheckConstraint("CK_Products_Rating_Constraint", " Rating BETWEEN 0 AND 5");
                         });
                 });
 
@@ -436,6 +498,25 @@ namespace AllUp_BB104.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("AllUp_BB104.Models.Comment", b =>
+                {
+                    b.HasOne("AllUp_BB104.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AllUp_BB104.Models.Product", "Product")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("AllUp_BB104.Models.Product", b =>
                 {
                     b.HasOne("AllUp_BB104.Models.Brand", "Brand")
@@ -543,6 +624,8 @@ namespace AllUp_BB104.Migrations
 
             modelBuilder.Entity("AllUp_BB104.Models.Product", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("ProductImages");
 
                     b.Navigation("ProductTags");
