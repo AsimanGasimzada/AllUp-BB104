@@ -18,12 +18,6 @@ C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\scopedcss\
 C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\staticwebassets\msbuild.AllUp-BB104.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\staticwebassets\msbuild.AllUp-BB104.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\staticwebassets\msbuild.build.AllUp-BB104.props
-C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.AllUp-BB104.props
-C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.AllUp-BB104.props
-C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\AllUp-BB104.dll
 C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\refint\AllUp-BB104.dll
@@ -267,3 +261,4 @@ C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\bin\Debug\net8.0\Microsoft.
 C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\AllUp-BB104.sourcelink.json
+C:\Users\Asiman\source\repos\AllUp-BB104\AllUp-BB104\obj\Debug\net8.0\staticwebassets.build.json.cache

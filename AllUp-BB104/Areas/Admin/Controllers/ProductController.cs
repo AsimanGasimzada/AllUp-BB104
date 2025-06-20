@@ -34,6 +34,16 @@ public class ProductController : Controller
         return View(vms);
     }
 
+
+
+    public async Task<IActionResult> GetProducts()
+    {
+        var products = await _context.Products.Include(x => x.ProductImages).ToListAsync();
+
+        var vms = _mapper.Map<List<ProductGetVM>>(products);
+
+        return Json(vms);
+    }
     public async Task<IActionResult> Create()
     {
         await _setViewBagItemsAsync();
@@ -178,7 +188,7 @@ public class ProductController : Controller
 
     public async Task<IActionResult> Delete(int id)
     {
-        var product = await _context.Products.Include(x => x.ProductImages).FirstOrDefaultAsync(x => x.Id == id);
+        var product = await _context.Products.Include(x => x.ProductImages.Where(x => !x.IsMain)).FirstOrDefaultAsync(x => x.Id == id);
 
         if (product is null)
             return NotFound();
@@ -371,7 +381,7 @@ public class ProductController : Controller
     {
         var productImage = await _context.ProductImages.FirstOrDefaultAsync(x => x.Id == id);
 
-        if (productImage is null )
+        if (productImage is null)
             return NotFound();
 
         _context.Remove(productImage);
